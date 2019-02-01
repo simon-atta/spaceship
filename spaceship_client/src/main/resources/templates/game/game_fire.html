@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>User management page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+<link rel="stylesheet" th:href="@{/css/main.css}"
+	href="../../css/main.css" />
+
+</head>
+<body>
+
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+
+	<div class="container">
+	
+		<div th:if="${not #strings.isEmpty(error)}" class="alert alert-danger">
+		  <strong th:text="#{${error}}"></strong>
+		</div>
+	
+	
+		<div class="alert alert-info">
+		  You have <strong th:text="${fireCount}"></strong> salvo shot you can fire against your opponent
+		</div>
+
+		<form class="well form-horizontal" th:action="@{/game/fire/} + ${gameId}" th:object="${salvoShots}" method="post" id="contact_form" name="contact_form">
+			<fieldset>
+
+				<!-- Form Name -->
+				<legend>Salvo shots</legend>
+
+				<div class="form-group" th:each="currentShot, stat : ${salvoShots.salvoShotsList}">
+					<input th:id="${'salvo'+stat.index}" th:name="${'salvo'+stat.index}" th:field="*{salvoShotsList[__${stat.index}__]}" th:placeholder="${'Salvo Shot No.'+stat.index}" class="form-control" type="text"/><br></br>
+				</div>
+				
+				
+				<button type="submit" class="btn btn-warning">
+						Place <span class="glyphicon glyphicon-send"></span>
+					</button>
+
+			</fieldset>
+		</form>
+	</div>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js"></script>
+	<script src="js/user/createuser.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>User management page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+<link rel="stylesheet" th:href="@{/css/main.css}"
+	href="../../css/main.css" />
+
+</head>
+<body>
+
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+
+	<div class="container">
+
+		
+
+		<table class="table" th:if="${#strings.isEmpty(error)}">
+			<thead>
+				<tr>
+					<th>Game Id</th>
+					<th>Player Turn</th>
+					<th>Opponent Full Name</th>
+					<th>Opponent User Id</th>
+					<th>Status</th>
+					<th>View Game</th>
+					<th>Fire</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="game : ${gameList}">
+					<td th:text="${game.gameId}"></td>
+					<td th:text="${game.starting}"></td>
+					<td th:text="${game.fullName}"></td>
+					<td th:text="${game.userId}"></td>
+					<td th:text="${game.status}"></td>
+					<td><a th:href="${'/game/status/'+game.gameId}">View game status</a></td>
+					<td><a th:if="${game.starting == user and game.status != 'finished'}" th:href="${'/game/fire/'+game.gameId}">Fire</a></td>
+				</tr>
+				<tr th:if="${gameList.empty}">
+					<td colspan="3">No games found</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		
+
+
+	</div>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

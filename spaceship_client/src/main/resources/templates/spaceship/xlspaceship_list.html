@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>User management page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+<link rel="stylesheet" th:href="@{/css/main.css}"
+	href="../../css/main.css" />
+
+</head>
+<body>
+
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+
+	<div class="container">
+
+		<div th:if="${not #strings.isEmpty(error)}" class="alert alert-danger">
+			<strong th:text="#{${error}}"></strong>
+		</div>
+		
+		<div th:if="${not #strings.isEmpty(emptyXLspaceships)}" class="alert alert-danger">
+			<strong th:text="#{${emptyXLspaceships}}"></strong> <a href="/getallspaceships">Choice spaceship</a>
+		</div>
+		
+		<div th:if="${not #strings.isEmpty(userinfo)}" class="alert alert-info">
+			<strong th:text="#{${userinfo}}"></strong>
+		</div>
+		
+		<div th:if="${#strings.isEmpty(emptySpaceships) and #strings.isEmpty(emptyXLspaceships)}" class="alert alert-info">
+			This is <strong th:text="${user}"></strong> XL Spaceships
+		</div>
+		
+		<div th:if="${not #strings.isEmpty(emptySpaceships)}" class="alert alert-danger">
+			<strong th:text="#{${emptySpaceships}}"></strong>
+		</div>
+
+		<table class="table" th:if="${#strings.isEmpty(error)}">
+			<thead>
+				<tr>
+					<th>Address</th>
+					<th>Status</th>
+					<th>Play</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="spaceship : ${spaceships}">
+					<td th:text="${spaceship.spaceshipAddress}"></td>
+					<td th:text="${spaceship.spaceshipStatus}"></td>
+					<td th:if="${#strings.isEmpty(userinfo) and #strings.isEmpty(emptySpaceships)}"><a th:href="${'/challenge/'+spaceship.spaceshipId}">Challenge</a></td>
+					<td th:if="${not #strings.isEmpty(userinfo)}"><a th:href="${'/challengemulti/'+spaceship.spaceshipId+'/'+assmentSpace}">Select</a></td>
+					<td th:if="${not #strings.isEmpty(emptySpaceships)}"><a th:href="${'/showspaceship/'+spaceship.spaceshipId}">Assign spaceships</a></td>
+				</tr>
+				<tr th:if="${spaceships.empty}">
+					<td colspan="3">No XL spaceship found</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		
+
+
+	</div>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

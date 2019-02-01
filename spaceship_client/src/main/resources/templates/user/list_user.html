@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>User management page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+<link rel="stylesheet" th:href="@{/css/main.css}"
+	href="../../css/main.css" />
+
+</head>
+<body>
+
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+
+	<div class="container">
+
+		<div th:if="${not #strings.isEmpty(error)}" class="alert alert-danger">
+			<strong th:text="#{${error}}"></strong>
+		</div>
+
+		<table class="table" th:if="${#strings.isEmpty(error)}">
+			<thead>
+				<tr>
+					<th>Full Name</th>
+					<th>User Name</th>
+					<th>Spaceships</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user : ${users}">
+					<td th:text="${user.fullName}"></td>
+					<td th:text="${user.userId}"></td>
+					<td><a th:href="${'/getspaceships/'+user.userId}">View User Spaceships</a></td>
+				</tr>
+				<tr th:if="${users.empty}">
+					<td colspan="3">No person registered</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+	</div>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

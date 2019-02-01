@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>User management page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+<link rel="stylesheet" th:href="@{/css/main.css}"
+	href="../../css/main.css" />
+
+</head>
+<body>
+
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+
+	<div class="container">
+
+		<div th:if="${not #strings.isEmpty(error)}" class="alert alert-danger">
+			<strong th:text="#{${error}}"></strong>
+		</div>
+		
+		<div th:if="${not #strings.isEmpty(emptyspaceships)}" class="alert alert-danger">
+			<strong th:text="#{${emptyspaceships}}"></strong> <a href="/getallspaceships">Choice spaceship</a>
+		</div>
+
+		<table class="table" th:if="${#strings.isEmpty(error)}">
+			<thead>
+				<tr>
+					<th>Address</th>
+					<th>Status</th>
+					<th>User</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="spaceship : ${spaceships}">
+					<td th:text="${spaceship.spaceshipAddress}"></td>
+					<td th:text="${spaceship.spaceshipStatus}"></td>
+					<td th:if="${not #strings.isEmpty(spaceship.userId)}" th:text="${spaceship.userId}"></td>
+					<td th:if="${#strings.isEmpty(spaceship.userId)}"><a th:href="${'/assignspaceship/'+spaceship.spaceshipId}">Assign</a></td>
+				</tr>
+				<tr th:if="${spaceships.empty}">
+					<td colspan="3">No XL spaceship found</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+	</div>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

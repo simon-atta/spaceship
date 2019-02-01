@@ -1,0 +1,46 @@
+<nav class="navbar navbar-inverse" th:fragment="header">
+	<div class="container">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="/">Spaceship Game</a>
+		</div>
+		
+		<div id="navbar" class="collapse navbar-collapse" sec:authorize="isAuthenticated()">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="/">Home</a></li>
+				<li class="active dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">Users <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="/listusers">List all users</a></li>
+					</ul></li>
+
+				<li class="active dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">Spaceships <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="/getallspaceships">List all XL spaceships</a></li>
+						<li><a th:href="${'/getuserspaceships/'+#authentication.name}">List my XL spaceships</a></li>
+					</ul>
+				</li>
+
+				<li class="active dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">Games <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="/game/list">List all games</a></li>
+					</ul>
+				</li>
+			</ul>
+			<div class="navbar-brand">Hello,<span sec:authentication="principal.username"/></div>
+		</div>
+		
+		<div id="navbar" class="collapse navbar-collapse" sec:authorize="isAnonymous()">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="/createuser">Register</a></li>
+			</ul>
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="/login">Login</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>

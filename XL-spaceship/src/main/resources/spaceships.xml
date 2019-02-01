@@ -1,0 +1,151 @@
+
+<spaceships>
+	<spaceship id="1" name="Winger" row="5" col="3">
+		<row id="0">
+			<index id="0">*</index>
+			<index id="1"> </index>
+			<index id="2">*</index>
+		</row>
+		<row id="1">
+			<index id="0">*</index>
+			<index id="1"> </index>
+			<index id="2">*</index>
+		</row>
+
+		<row id="2">
+			<index id="0"> </index>
+			<index id="1">*</index>
+			<index id="2"> </index>
+		</row>
+
+		<row id="3">
+			<index id="0">*</index>
+			<index id="1"> </index>
+			<index id="2">*</index>
+		</row>
+
+		<row id="4">
+			<index id="0">*</index>
+			<index id="1"> </index>
+			<index id="2">*</index>
+		</row>
+	</spaceship>
+	<spaceship id="2" name="Angle" row="4" col="3">
+		<row id="0">
+			<index id="0">*</index>
+			<index id="1"> </index>
+			<index id="2"> </index>
+		</row>
+		<row id="1">
+			<index id="0">*</index>
+			<index id="1"> </index>
+			<index id="2"> </index>
+		</row>
+
+		<row id="2">
+			<index id="0">*</index>
+			<index id="1"> </index>
+			<index id="2"> </index>
+		</row>
+
+		<row id="3">
+			<index id="0">*</index>
+			<index id="1">*</index>
+			<index id="2">*</index>
+		</row>
+	</spaceship>
+
+	<spaceship id="3" name="A-Class" row="4" col="3">
+		<row id="0">
+			<index id="0"> </index>
+			<index id="1">*</index>
+			<index id="2"> </index>
+		</row>
+		<row id="1">
+			<index id="0">*</index>
+			<index id="1"> </index>
+			<index id="2">*</index>
+		</row>
+
+		<row id="2">
+			<index id="0">*</index>
+			<index id="1">*</index>
+			<index id="2">*</index>
+		</row>
+
+		<row id="3">
+			<index id="0">*</index>
+			<index id="1"> </index>
+			<index id="2">*</index>
+		</row>
+	</spaceship>
+	
+	<spaceship id="4" name="B-Class" row="5" col="3">
+		<row id="0">
+			<index id="0">*</index>
+			<index id="1">*</index>
+			<index id="2"> </index>
+		</row>
+		<row id="1">
+			<index id="0">*</index>
+			<index id="1"> </index>
+			<index id="2">*</index>
+		</row>
+
+		<row id="2">
+			<index id="0">*</index>
+			<index id="1">*</index>
+			<index id="2"> </index>
+		</row>
+
+		<row id="3">
+			<index id="0">*</index>
+			<index id="1"> </index>
+			<index id="2">*</index>
+		</row>
+		
+		<row id="4">
+			<index id="0">*</index>
+			<index id="1">*</index>
+			<index id="2"> </index>
+		</row>
+	</spaceship>
+	
+	<spaceship id="5" name="S-Class" row="5" col="4">
+		<row id="0">
+			<index id="0"> </index>
+			<index id="1">*</index>
+			<index id="2">*</index>
+			<index id="3"> </index>
+		</row>
+		<row id="1">
+			<index id="0">*</index>
+			<index id="1"> </index>
+			<index id="2"> </index>
+			<index id="3"> </index>
+		</row>
+
+		<row id="2">
+			<index id="0"> </index>
+			<index id="1">*</index>
+			<index id="2">*</index>
+			<index id="3"> </index>
+		</row>
+
+		<row id="3">
+			<index id="0"> </index>
+			<index id="1"> </index>
+			<index id="2"> </index>
+			<index id="3">*</index>
+		</row>
+		
+		<row id="4">
+			<index id="0"> </index>
+			<index id="1">*</index>
+			<index id="2">*</index>
+			<index id="3"> </index>
+		</row>
+	</spaceship>
+
+
+</spaceships>

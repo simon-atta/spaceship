@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>User management page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+<link rel="stylesheet" th:href="@{/css/main.css}"
+	href="../../css/main.css" />
+
+</head>
+<body>
+
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+
+	<div class="container">
+
+		<div th:if="${not #strings.isEmpty(error)}" class="alert alert-danger">
+			<strong th:text="#{${error}}"></strong>
+		</div>
+
+
+		<div class="col-xs-3">
+			<h3 class="sub-header">Your fire results</h3>
+			<div class="table-responsive">
+				<table>
+					<thead>
+						<tr>
+							<th>Salvo</th>
+							<th>Result</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr th:each="salvo : ${fireResults.salvo}">
+							<td th:text="${salvo.key}"></td>
+							<td th:text="${salvo.value}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+
+
+
+		<div class="col-xs-3">
+			<h3 class="sub-header">Game status</h3>
+			<span th:each="spaceShipBoardVal : ${fireResults.game}"> 
+				<span th:text="#{${spaceShipBoardVal.key}} + ':'" /> 
+				<span th:text="${spaceShipBoardVal.value}" />
+			</span>
+		</div>
+
+
+	</div>
+
+
+
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

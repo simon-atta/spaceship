@@ -1,0 +1,46 @@
+version: '2.1'
+services:
+  db:
+    image: mysql:latest
+    container_name: mysql-server
+    environment:
+    - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    - MYSQL_DATABASE=${MYSQL_DATABASE}
+    - MYSQL_USER=${MYSQL_USER}
+    - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    ports:
+    - 3307:3306
+    volumes:
+    - ./db-sript.sql:/tmp/db-sript.sql
+    - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+  spaceship1:
+    image: spaceships/spaceship
+    ports:
+    - 8080:8080
+    environment:
+    - DATABASE_HOST=${MYSQL_HOST}
+    - DATABASE_USER=${MYSQL_USER}
+    - DATABASE_PASSWORD=${MYSQL_PASSWORD}
+    - DATABASE_NAME=${MYSQL_DATABASE}
+    - DATABASE_PORT=${MYSQL_PORT}
+  spaceship2:
+    image: spaceships/spaceship
+    ports:
+    - 8081:8080
+    environment:
+    - DATABASE_HOST=${MYSQL_HOST}
+    - DATABASE_USER=${MYSQL_USER}
+    - DATABASE_PASSWORD=${MYSQL_PASSWORD}
+    - DATABASE_NAME=${MYSQL_DATABASE}
+    - DATABASE_PORT=${MYSQL_PORT}
+  spaceship3:
+    image: spaceships/spaceship
+    ports:
+    - 8082:8080
+    environment:
+    - DATABASE_HOST=${MYSQL_HOST}
+    - DATABASE_USER=${MYSQL_USER}
+    - DATABASE_PASSWORD=${MYSQL_PASSWORD}
+    - DATABASE_NAME=${MYSQL_DATABASE}
+    - DATABASE_PORT=${MYSQL_PORT}
+    

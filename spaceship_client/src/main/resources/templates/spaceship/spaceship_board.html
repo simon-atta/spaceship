@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>User management page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+<link rel="stylesheet" th:href="@{/css/main.css}"
+	href="../../css/main.css" />
+
+</head>
+<body>
+
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+
+	<div class="container">
+	
+		<div th:if="${not #strings.isEmpty(error)}" class="alert alert-danger">
+			<strong th:text="#{${error}}"></strong>
+		</div>
+	
+		<div class="col-xs-6">
+			<h3 class="sub-header">Spaceships Types</h3>
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Spaceship Name</th>
+							<th>Spaceship Shape</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="spaceShipShape : ${spaceShipShapes}">
+							<td th:text="${spaceShipShape.spaceshipsType}"></td>
+							<td>
+								<p th:each="x: ${#numbers.sequence(0, #arrays.length(spaceShipShape.board)-1)}">
+									<span th:each="y: ${#numbers.sequence(0, spaceShipShape.cols-1)}" th:text="${spaceShipShape.board[x][y]}"></span>
+								</p>
+							</td>
+						</tr>
+						<tr th:if="${spaceShipShapes.empty}">
+							<td colspan="3">No spaceship found</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+		<div class="col-xs-3">
+			<h3 class="sub-header">Current Board</h3>
+			<div class="table-responsive">
+				<p th:each="i: ${#numbers.sequence(0, 15)}">
+					<span th:each="j: ${#numbers.sequence(0, 15)}" th:text="${spaceShipBoardArr[i][j]}"></span>
+				</p>
+			</div>
+		</div>
+		
+		<!-- <div class="col-xs-3">
+			<h3 class="sub-header">Current Board</h3>
+			<div class="table-responsive" th:each="spaceShipBoardObj : ${spaceShipBoard.board}">
+				<table>
+					<tbody>
+						<tr th:each="spaceShipBoardVal : ${spaceShipBoardObj}">
+							<td th:text="${spaceShipBoardVal}"></td>
+						</tr>
+					</tbody>
+				</table>
+			
+			</div>
+		</div> -->
+		
+		<div class="col-xs-3">
+			<h3 class="sub-header">Assigned Spaceships</h3>
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Spaceship Type</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="spaceshipsType : ${spaceShipBoard.spaceshipsType}">
+							<td th:text="${spaceshipsType}"></td>
+						</tr>
+						<tr th:if="${spaceShipBoard.spaceshipsType.empty}">
+							<td colspan="3">No spaceship found</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+		
+		
+		<div class="col-xs-3" th:if="${#lists.size(spaceShipBoard.spaceshipsType) &lt; 5}">
+			<h3 class="sub-header">Place Spaceship</h3>
+			<div class="table-responsive">
+				<div class="form-group">
+				
+				<form class="well form-horizontal" th:action="@{/addspaceship}" th:object="${spaceshipReq}" method="post" id="contact_form" name="contact_form">
+					<input id="spaceshiptype" name="spaceshiptype"  placeholder="Spaceship Type" th:field="*{spaceShipName}" class="form-control" type="text"/><br></br>
+					<input id="xcoordinate" name="xcoordinate" placeholder="X Coordinate" th:field="*{xCoordinate}" class="form-control" type="text"/><br></br>
+					<input id="ycoordinate" name="ycoordinate" placeholder="Y Coordinate" th:field="*{yCoordinate}" class="form-control" type="text"/><br></br>
+					<input id="spaceshipId" name="spaceshipId" th:value="${spaceshipId}" class="form-control" type="hidden"/><br></br>
+					<button type="submit" class="btn btn-warning">
+						Place <span class="glyphicon glyphicon-send"></span>
+					</button>
+				</form>
+				
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>
